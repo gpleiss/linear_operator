@@ -14,15 +14,16 @@ from .linear_operator import LinearOperator
 
 
 class DiagLinearOperator(LinearOperator):
+    """
+    Diagonal linear operator. Supports arbitrary batch sizes.
+
+    For example, supplying a `b1 x ... x bk x n` torch.Tensor will represent
+    a `b1 x ... x bk`-sized batch of `n x n` diagonal matrices
+
+    :param torch.Tensor diag: The diagonal.
+    """
+
     def __init__(self, diag):
-        """
-        Diagonal linear operator. Supports arbitrary batch sizes.
-
-        For example, supplying a `b1 x ... x bk x n` torch.Tensor will represent
-        a `b1 x ... x bk`-sized batch of `n x n` diagonal matrices
-
-        :param torch.Tensor diag: The diagonal.
-        """
         super().__init__(diag)
         self._diag = diag
 

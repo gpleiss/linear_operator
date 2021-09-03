@@ -25,8 +25,8 @@ readme = open("README.md").read()
 version = find_version("linear_operator", "__init__.py")
 
 
-torch_min = "1.7"
-install_requires = [">=".join(["torch", torch_min]), "scipy"]
+torch_min = "1.9"
+install_requires = [">=".join(["torch", torch_min])]
 # if recent dev version of PyTorch is installed, no need to install stable
 try:
     import torch

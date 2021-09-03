@@ -30,9 +30,9 @@ class KroneckerProductLinearOperator(LinearOperator):
     will have size (... x MP x QN).
 
     :param outer: :math:`\mathbf A`
-    :type outer: ~linear_operator.operators.LienarOperator or torch.Tensor
+    :type outer: ~linear_operator.LinearOperator or torch.Tensor
     :param inner: :math:`\mathbf B`
-    :type inner: ~linear_operator.operators.LienarOperator or torch.Tensor
+    :type inner: ~linear_operator.LinearOperator or torch.Tensor
     """
 
     def __init__(self, outer: Union[LinearOperator, torch.Tensor], inner: Union[LinearOperator, torch.Tensor]):

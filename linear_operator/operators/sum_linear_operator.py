@@ -14,6 +14,14 @@ from .linear_operator import LinearOperator
 
 
 class SumLinearOperator(LinearOperator):
+    """
+    A :class:`~linear_operator.LinearOperator` that represents the sum of multiple
+    sub-LinearOperators.
+
+    :param linear_operators:
+    :type linear_operators: tuple(~linear_operator.LinearOperator or torch.Tensor)
+    """
+
     def __init__(self, *linear_operators: Tuple[Union[LinearOperator, torch.Tensor]], **kwargs):
 
         # If we have any tensors, make sure that singleton dimensions are appropriately broadcast

@@ -52,7 +52,7 @@ class LinearOperator(ABC):
     Base class for LinearOperators.
 
     :ivar torch.Size batch_shape: The dimensions of the batches
-        represented by the :obj:`~linear_operator.operators.LinearOperator`.
+        represented by the :obj:`~linear_operator.LinearOperator`.
         For example, a LinearOperator with shape (4 x 3 x 5 x 6) would have a batch
         shape of (4 x 3).
     :ivar torch.dtype dtype: Data type represented by the LinearOperator.
@@ -60,7 +60,7 @@ class LinearOperator(ABC):
     :ivar bool is_square: Whether or not the LinearOperator is a square
         operator.
     :ivar torch.Size matrix_shape: The 2-dimensional shape of the implicit
-        matrix represented by the :obj:`~linear_operator.operators.LinearOperator`.
+        matrix represented by the :obj:`~linear_operator.LinearOperator`.
         In other words: a :obj:`torch.Size` that consists of the operators'
         output dimension and input dimension.
     :ivar torch.Size shape: The overall operator shape: :attr:`batch_shape` +
@@ -86,7 +86,7 @@ class LinearOperator(ABC):
             This method is intended to be used only internally by various
             Functions that support backpropagation (e.g., :class:`Matmul`).
             Once this method is defined, it is strongly recommended that one
-            use :func:`~linear_operator.operators.LinearOperator.matmul` instead, which makes use of this
+            use :func:`~linear_operator.LinearOperator.matmul` instead, which makes use of this
             method properly.
 
         :param rhs: the matrix :math:`\mathbf M` to multiply with.
@@ -112,7 +112,7 @@ class LinearOperator(ABC):
 
         ..note::
             This method is used internally by the related function
-            :func:`~linear_operator.operators.LinearOperator.size`,
+            :func:`~linear_operator.LinearOperator.size`,
             which does some additional work. Calling this method directly is discouraged.
 
         :return: The size of the (batched) matrix :math:`\mathbf K` represented by this LinearOperator
@@ -128,7 +128,7 @@ class LinearOperator(ABC):
         ..note::
             This method is intended to be used only internally by various
             Functions that support backpropagation.  For example, this method
-            is used internally by :func:`~linear_operator.operators.LinearOperator.inv_quad_logdet`.
+            is used internally by :func:`~linear_operator.LinearOperator.inv_quad_logdet`.
             It is not likely that users will need to call this method directly.
 
         :return: Derivative with respect to the arguments that are actually
@@ -256,14 +256,14 @@ class LinearOperator(ABC):
     def add(self, other: Union[torch.Tensor, "LinearOperator"], alpha: float = 1.0) -> LinearOperator:
         r"""
         Each element of the tensor :attr:`other` is multiplied by the scalar :attr:`alpha`
-        and added to each element of the :obj:`~linear_operator.operators.LinearOperator`.
-        The resulting :obj:`~linear_operator.operators.LinearOperator` is returned.
+        and added to each element of the :obj:`~linear_operator.LinearOperator`.
+        The resulting :obj:`~linear_operator.LinearOperator` is returned.
 
         .. math::
             \text{out} = \text{self} + \text{alpha} ( \text{other} )
 
         :param other: object to add to :attr:`self`.
-        :type other: torch.Tensor or ~linear_operator.operators.LinearOperator
+        :type other: torch.Tensor or ~linear_operator.LinearOperator
         :param float alpha: Optional scalar multiple to apply to :attr:`other`.
         :return: :math:`\mathbf A + \alpha \mathbf O`, where :math:`\mathbf A`
             is the linear operator and :math:`\mathbf O` is :attr:`other`.
@@ -301,7 +301,7 @@ class LinearOperator(ABC):
 
     def dim(self) -> int:
         """
-        Alias of :meth:`~linear_operator.operators.LinearOperator.ndimension`
+        Alias of :meth:`~linear_operator.LinearOperator.ndimension`
         """
         return self.ndimension()
 
@@ -315,7 +315,7 @@ class LinearOperator(ABC):
         .. note::
             This method does NOT sort the eigenvalues.
 
-        :rtype: torch.Tensor, ~linear_opeator.operators.LinearOperator
+        :rtype: torch.Tensor, ~linear_operator.LinearOperator
         :return:
             - The eigenvalues (... x N)
             - The eigenvectors (... x N x N).  If :attr:`eigenvectors = False`, then this is None.
@@ -347,7 +347,7 @@ class LinearOperator(ABC):
         will have size (... x MP x QN).
 
         :param other:
-        :type other: torch.Tensor or ~linear_operator.operators.LinearOperator
+        :type other: torch.Tensor or ~linear_operator.LinearOperator
         :return: operator representing :math:`\text{self } \otimes \text{ other}`
         :rtype: ~linear_operator.operators.KroneckerProductLinearOperator
         """
@@ -379,11 +379,11 @@ class LinearOperator(ABC):
         r"""
         Performs :math:`\mathbf A \mathbf B`, where :math:`\mathbf A \in
         \mathbb R^{M \times N}` is the LinearOperator and :math:`\mathbf B`
-        is a right hand side :obj:`torch.Tensor` (or :obj:`~linear_operator.operators.LinearOperator`).
+        is a right hand side :obj:`torch.Tensor` (or :obj:`~linear_operator.LinearOperator`).
 
         :param other: :math:`\mathbf B` - the matrix or vector to multiply against.
-        :type other: torch.Tensor or ~linear_operator.operators.LinearOperator (... x N x D)
-        :rtype: torch.Tensor or ~linear_operator.operators.LinearOperator (... x M x D)
+        :type other: torch.Tensor or ~linear_operator.LinearOperator (... x N x D)
+        :rtype: torch.Tensor or ~linear_operator.LinearOperator (... x M x D)
         :return: The resulting of applying the linear operator to :math:`\mathbf B`.
             The return type will be the same as :attr:`other`'s type.
         """
