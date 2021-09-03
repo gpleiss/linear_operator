@@ -1,5 +1,4 @@
 # linear_operator
-A LinearOperator implementation for PyTorch
+[WIP] A LinearOperator implementation for PyTorch
 
-![Build Status](https://travis-ci.com/cornellius-gp/linear_operator.svg?branch=main)
-[![Documentation Status](https://readthedocs.org/projects/linearoperator/badge/?version=latest)](https://linearoperator.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/linear-operator/badge/?version=latest)](https://linear-operator.readthedocs.io/en/latest/?badge=latest)
