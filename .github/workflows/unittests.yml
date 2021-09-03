@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pytorch-version: ["master", "stable"]
+        pytorch-version: ["stable"]
 
     steps:
     - uses: actions/checkout@v2
