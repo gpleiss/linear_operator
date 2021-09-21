@@ -11,7 +11,6 @@ from linear_operator.test.linear_operator_test_case import SymmetricLinearOperat
 
 
 class TestRootLinearOperator(SymmetricLinearOperatorTestCase, unittest.TestCase):
-
     def create_linear_operator(self, seed=0):
         torch.random.manual_seed(seed)
         root = torch.randn(3, 5, requires_grad=True)
@@ -24,7 +23,6 @@ class TestRootLinearOperator(SymmetricLinearOperatorTestCase, unittest.TestCase)
 
 
 class TestRootLinearOperatorBatch(TestRootLinearOperator):
-
     def create_lazy_tensor(self, seed=1):
         torch.random.manual_seed(seed)
         root = torch.randn(3, 5, 5) + torch.eye(5)
@@ -33,7 +31,6 @@ class TestRootLinearOperatorBatch(TestRootLinearOperator):
 
 
 class TestRootLinearOperatorMultiBatch(TestRootLinearOperator):
-
     def create_lazy_tensor(self, seed=2):
         torch.random.manual_seed(seed)
         root = torch.randn(2, 3, 5, 5) + torch.eye(5)

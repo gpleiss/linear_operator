@@ -11,7 +11,6 @@ from linear_operator.test.linear_operator_test_case import SquareLinearOperatorT
 
 
 class TestLowRankPlusDiagLinearOperator(SquareLinearOperatorTestCase, unittest.TestCase):
-
     def create_linear_operator(self, seed=0):
         torch.random.manual_seed(seed)
         tensor = torch.randn(5, 2)
@@ -28,11 +27,16 @@ class TestLowRankPlusDiagLinearOperator(SquareLinearOperatorTestCase, unittest.T
 
 
 class TestLowRankPlusDiagLinearOperatorBatch(TestLowRankPlusDiagLinearOperator):
-
     def create_lazy_tensor(self, seed=0):
         torch.random.manual_seed(seed)
         tensor = torch.randn(3, 5, 2)
-        diag = torch.tensor([[1.0, 2.0, 4.0, 2.0, 3.0], [2.0, 1.0, 2.0, 1.0, 4.0], [1.0, 2.0, 2.0, 3.0, 4.0]])
+        diag = torch.tensor(
+            [
+                [1.0, 2.0, 4.0, 2.0, 3.0],
+                [2.0, 1.0, 2.0, 1.0, 4.0],
+                [1.0, 2.0, 2.0, 3.0, 4.0],
+            ]
+        )
         return RootLinearOperator(tensor) + DiagLinearOperator(diag)
 
     def evaluate_lazy_tensor(self, lazy_tensor):

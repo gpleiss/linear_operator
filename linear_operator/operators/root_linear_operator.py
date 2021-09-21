@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .linear_operator import LinearOperator
 
+
 class RootLinearOperator(LinearOperator):
     """
     Linear operator that represents the square root of a matrix. Supports
@@ -31,8 +32,9 @@ class RootLinearOperator(LinearOperator):
 
     def __add__(self, other):
         from linear_operator.operators.diag_linear_operator import DiagLinearOperator
-        
+
         if isinstance(other, DiagLinearOperator):
             from .low_rank_plus_diag_linear_operator import LowRankPlusDiagLinearOperator
+
             return LowRankPlusDiagLinearOperator(self, other)
         return super().__add__(other)
