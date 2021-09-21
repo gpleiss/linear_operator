@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-from linear_operator.operators.root_linear_operator import RootLinearOperator
 
 from typing import Optional, Tuple
 

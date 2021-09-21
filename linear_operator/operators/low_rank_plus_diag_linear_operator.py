@@ -11,7 +11,7 @@ import torch
 
 from torch import Tensor
 
-from .linear_operator import LinearOperator, implements
+from .linear_operator import implements
 
 
 def _rank_one_update_to_cholesky(chol_factor: Tensor, vec: Tensor) -> Tensor:
