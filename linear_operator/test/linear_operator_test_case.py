@@ -120,6 +120,7 @@ class SquareLinearOperatorTestCase(LinearOperatorTestCase):
         # Perform the solve
         res = torch.linalg.solve(linear_operator, rhs)
         actual = evaluated.inverse().matmul(rhs_copy)
+        print(res, actual)
         self.assertAllClose(res, actual, rtol=0.02, atol=1e-5)
 
         # Perform backward pass

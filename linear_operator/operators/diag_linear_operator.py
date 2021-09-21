@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
+from linear_operator.operators.root_linear_operator import RootLinearOperator
 
 from typing import Optional, Tuple
 
@@ -11,6 +12,7 @@ from ..utils.broadcasting import _collapse_batch_and_singleton_dimensions
 from ..utils.memoize import cached
 from .dense_linear_operator import DenseLinearOperator
 from .linear_operator import LinearOperator
+from .root_linear_operator import RootLinearOperator
 
 
 class DiagLinearOperator(LinearOperator):
@@ -60,4 +62,7 @@ class DiagLinearOperator(LinearOperator):
     def __add__(self, other):
         if isinstance(other, DiagLinearOperator):
             return self.__class__(self._diag + other._diag)
+        elif isinstance(other, RootLinearOperator):
+            from .low_rank_plus_diag_linear_operator import LowRankPlusDiagLinearOperator
+            return LowRankPlusDiagLinearOperator(self, other)
         return super().__add__(other)
