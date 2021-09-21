@@ -89,6 +89,7 @@ class LowRankPlusDiagLinearOperator(SumLinearOperator):
     def cholesky_ex(self, upper: bool = False) -> Tensor:
         class mocked_class:
             info = torch.zeros(1)
+            # noqa
             l = self.cholesky(upper=upper)
 
         return mocked_class()
