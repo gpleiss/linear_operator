@@ -63,5 +63,6 @@ class DiagLinearOperator(LinearOperator):
             return self.__class__(self._diag + other._diag)
         elif isinstance(other, RootLinearOperator):
             from .low_rank_plus_diag_linear_operator import LowRankPlusDiagLinearOperator
+
             return LowRankPlusDiagLinearOperator(self, other)
         return super().__add__(other)
